@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Boxes</title>
+        <style>
+            body{
+                --box-size: 5vw;
+                margin: 0;
+                height: 100vh;
+                text-align: center;
+                padding: calc(50vh - 20vw) calc(50vw - 30vw);
+                overflow: hidden;
+            }
+            table{
+                background: #000;
+            }
+            td{
+                height: var(--box-size);
+                width: var(--box-size);
+                font-size: calc(var(--box-size) * 4 / 5);
+                color: #0f0;
+                background: #fff;
+            }
+            td.black{
+                background: #000;
+            }
+            td.result{
+                width: calc(var(--box-size) * 3);
+            }
+        </style>
+    </head>
+    <body>
+        <table></table>
+        <script>
+            let body = document.body;
+            let table = body.getElementsByTagName("table")[0];
+            for(let i = 0; i < 8; i++){
+                let row = document.createElement("tr");
+                table.append(row);
+                for(let j = 0; j < 8; j++){
+                    let cell = document.createElement("td");
+                    row.append(cell);
+                    cell.x = j;
+                    cell.y = i;
+                    cell.innerHTML = "0";
+                }
+                let cell = document.createElement("td");
+                row.append(cell);
+                cell.innerHTML = "0";
+                cell.classList.add("result");
+            }
+
+            function toggleBackgroundColor(cell){
+                console.log(cell.x, cell.y);
+                cell.classList.toggle("black");
+                cell.innerHTML = 1 - cell.innerHTML;
+
+                let n = 0;
+                let cells = cell.parentElement.children;
+                for(let i = 0; i < 8; i++){
+                    n *= 2;
+                    n += + cells[i].innerHTML;
+                }
+                cells[8].innerHTML = n;
+            }
+
+            let active;
+
+            body.addEventListener("touchmove", (event) => {
+                const cell = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
+                if(cell.tagName != "TD" || cell.classList.contains("result")){
+                    active = cell;
+                    return;
+                }
+                if(cell == active){
+                    return;
+                }
+                active = cell;
+                toggleBackgroundColor(cell);
+            });
+            body.addEventListener("mouseover", (event) => {
+                const cell = document.elementFromPoint(event.clientX, event.clientY);
+                if(cell.tagName != "TD" || cell.classList.contains("result")){
+                    active = cell;
+                    return;
+                }
+                if(cell == active){
+                    return;
+                }
+                if(event.buttons == 0){
+                    return;
+                }
+                active = cell;
+                toggleBackgroundColor(cell);
+            });
+            body.addEventListener("pointerdown", (event) => {
+                event.preventDefault();
+                const cell = document.elementFromPoint(event.clientX, event.clientY);
+                if(cell.tagName != "TD" || cell.classList.contains("result")){
+                    active = cell;
+                    return;
+                }
+                active = cell;
+                toggleBackgroundColor(cell);
+            });
+        </script>
+    </body>
+</html>

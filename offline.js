@@ -1,7 +1,7 @@
 const CACHE_NAME = "binary-game";
 
 self.addEventListener("install", async (event) => {
-	event.waitUntil(() => {
+	event.waitUntil(async () => {
 		const cache = await caches.open(CACHE_NAME);
 		await cache.addAll([
 			"binary-game.html",
@@ -12,7 +12,7 @@ self.addEventListener("install", async (event) => {
 });
 
 self.addEventListener("fetch", async (event) => {
-	event.respondWith(() => {
+	event.respondWith(async () => {
 		const cache = await caches.open(CACHE_NAME);
 		return cache.match(event.request);
 	}());

@@ -25,7 +25,7 @@ main {
 	background: #fff;
 	text-align: center;
 	font-size: calc(var(--box-size) * 4 / 5);
-	color: #0f0;
+	color: #080;
 }
 #goal.wide {
 	width: calc(6 * var(--box-size));
@@ -54,7 +54,7 @@ circle {
 }
 .full circle {
 	stroke-dashoffset: 0;
-	fill: #000;
+	fill: #080;
 }
 .animate:not(.full) circle {
 	transition: 5s linear;

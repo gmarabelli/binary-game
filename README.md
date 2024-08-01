@@ -1,3 +1,5 @@
 # Binary Game
 
-[Go to game](binary-game.html)
+Cambia i bit e ottieni il numero richiesto. Buon divertimento!
+
+[Vai al gioco](binary-game.html)

@@ -17,7 +17,7 @@ const timersEvent = new Event("timers");
 
 let active;
 let limit = 2;
-let activeTimer = 3;
+let activeTimer = 0;
 let goal = 0;
 let timerLoop;
 

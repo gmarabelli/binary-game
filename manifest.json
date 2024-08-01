@@ -7,6 +7,12 @@
 			"type": "image/png",
 			"sizes": "384x384",
 			"purpose": "maskable"
+		},
+		{
+			"src": "icon.png",
+			"type": "image/png",
+			"sizes": "384x384",
+			"purpose": "any"
 		}
 	],
 	"start_url": "binary-game.html",

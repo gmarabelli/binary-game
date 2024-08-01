@@ -7,6 +7,8 @@ self.addEventListener("install", async (event) => {
 			"binary-game.html",
 			"style.css",
 			"script.js",
+			"manifest.json",
+			"icon.png",
 		]);
 	})());
 });

@@ -21,26 +21,29 @@ let activeTimer = 0;
 let goal = 0;
 let timerLoop;
 
-for(let i = 0; i < MAX_BITS; i++){
-	let cell = document.createElement("button");
-	pad.append(cell);
-	cell.innerHTML = "0";
-	cell.dataset.limit = Math.pow(2, MAX_BITS - i);
-	if(i < MAX_BITS - 1){
-		cell.classList.add("hidden");
-	}
-}
-
-for(let i = 0; i < NUM_TIMERS; i++){
-	let circleSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-	timersView.append(circleSVG);
-	circleSVG.innerHTML = '<circle cx="50%" cy="50%" r="45%" pathLength="1"></circle>';
-}
-
+setupHTML();
 const cells = document.getElementById("pad").children;
 const timers = timersView.children;
-
 startSequence();
+goOffline();
+
+function setupHTML () {
+	for(let i = 0; i < MAX_BITS; i++){
+		let cell = document.createElement("button");
+		pad.append(cell);
+		cell.innerHTML = "0";
+		cell.dataset.limit = Math.pow(2, MAX_BITS - i);
+		if(i < MAX_BITS - 1){
+			cell.classList.add("hidden");
+		}
+	}
+
+	for(let i = 0; i < NUM_TIMERS; i++){
+		let circleSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		timersView.append(circleSVG);
+		circleSVG.innerHTML = '<circle cx="50%" cy="50%" r="45%" pathLength="1"></circle>';
+	}
+}
 
 function startSequence () {
 	let i;
@@ -61,6 +64,15 @@ function startSequence () {
 		}
 		console.log("Game start");
 	}, START_TIME);
+}
+
+async function goOffline () {
+	try{
+		const registration = await navigator.serviceWorker.register("offline.js");
+		console.log("Service worker registration succeeded: ", registration);
+	}catch(error){
+		console.error("Cannot load service worker: ", error);
+	}
 }
 
 function startTimers () {

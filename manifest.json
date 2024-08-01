@@ -1,0 +1,14 @@
+{
+	"name": "Binary Game",
+	"short_name": "Binary",
+	"icons": [
+		{
+			"src": "icon.png",
+			"type": "image/png",
+			"sizes": "360x360"
+		}
+	],
+	"start_url": "binary-game.html",
+	"display": "standalone",
+	"orientation", "landscape-primary"
+}

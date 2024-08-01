@@ -27,6 +27,9 @@ main {
 	font-size: calc(var(--box-size) * 4 / 5);
 	color: #0f0;
 }
+#goal.wide {
+	width: calc(6 * var(--box-size));
+}
 
 #timers {
 	width: calc(8.25 * var(--box-size));

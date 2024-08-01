@@ -29,10 +29,12 @@ for(let i = 0; i < MAX_BITS; i++){
 	if(i < MAX_BITS - 1){
 		cell.classList.add("hidden");
 	}
+}
 
-	/*let circleSVG = document.createElement("svg");
+for(let i = 0; i < NUM_TIMERS; i++){
+	let circleSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 	timersView.append(circleSVG);
-	circleSVG.innerHTML = '<circle cx="50%" cy="50%" r="45%" pathLength="1"></circle>';*/
+	circleSVG.innerHTML = '<circle cx="50%" cy="50%" r="45%" pathLength="1"></circle>';
 }
 
 const cells = document.getElementById("pad").children;
@@ -55,12 +57,7 @@ function startSequence () {
 	setTimeout(newGoal, START_TIME);
 	setTimeout(() => {
 		for(let i = 0; i < MAX_BITS; i++){
-			cells[i].addEventListener("hit", () => {
-				toggleCell(cells[i]);
-				if(checkGoal()){
-					body.dispatchEvent(goalEvent);
-				}
-			});
+			cells[i].addEventListener("hit", handleHit);
 		}
 		console.log("Game start");
 	}, START_TIME);
@@ -109,8 +106,11 @@ body.addEventListener("goal", () => {
 		if(cell == null){
 			console.log("YOU WON!!");
 			for(let i = 0; i < MAX_BITS; i++){
-				//cells[i].removeEventListener("hit", );
+				cells[i].removeEventListener("hit", handleHit);
 			}
+			timers[NUM_TIMERS - 1].classList.add("full");
+			goalBanner.classList.add("wide");
+			goalBanner.innerHTML = "YOU WON!!";
 			return;
 		}else{
 			cell.classList.remove("hidden");
@@ -130,6 +130,13 @@ body.addEventListener("timers", () => {
 		newGoal();
 	}
 });
+
+function handleHit (event) {
+	toggleCell(event.target);
+	if(checkGoal()){
+		body.dispatchEvent(goalEvent);
+	}
+}
 
 function toggleCell (cell) {
 	active = cell;

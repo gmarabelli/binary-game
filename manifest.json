@@ -10,5 +10,5 @@
 	],
 	"start_url": "binary-game.html",
 	"display": "standalone",
-	"orientation", "landscape-primary"
+	"orientation": "landscape-primary"
 }

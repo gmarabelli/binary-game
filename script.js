@@ -91,7 +91,7 @@ function startTimers () {
 }
 
 function newGoal () {
-	goal = Math.floor(Math.random() * (2 - 1));
+	goal = Math.floor(Math.random() * (limit - 1));
 	if(goal >= calcPad()){
 		goal++;
 	}
@@ -109,7 +109,7 @@ body.addEventListener("goal", () => {
 		if(cell == null){
 			console.log("YOU WON!!");
 			for(let i = 0; i < MAX_BITS; i++){
-				//cells[i].removeEventListener("hit");
+				//cells[i].removeEventListener("hit", );
 			}
 			return;
 		}else{

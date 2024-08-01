@@ -5,7 +5,7 @@
 		{
 			"src": "icon.png",
 			"type": "image/png",
-			"sizes": "360x360"
+			"sizes": "384x384"
 		}
 	],
 	"start_url": "binary-game.html",

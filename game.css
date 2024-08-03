@@ -60,7 +60,7 @@ circle {
 	transition: 5s linear;
 }
 .animate-start.full circle {
-	transition: 2s linear;
+	transition: 0.25s linear;
 }
 
 #pad {
@@ -86,4 +86,18 @@ button.black {
 
 .hidden {
 	display: none;
+}
+
+@media(orientation: portrait){
+	#goal {
+		border: calc(0.1 * var(--box-size)) #000 solid;
+		border-radius: calc(0.2 * var(--box-size));
+		height: calc(2 * var(--box-size));
+		width: calc(6 * var(--box-size));
+		font-size: calc(var(--box-size) * 8 / 5);
+	}
+	#goal.wide {
+		width: calc(9 * var(--box-size));
+	}
+
 }

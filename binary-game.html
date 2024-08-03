@@ -4,7 +4,8 @@
 		<title>Binary Game</title>
 		<link rel="manifest" href="manifest.json">
 		<link rel="icon" href="icon.png" type="image/png">
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="game.css">
+		<link rel="stylesheet" href="install.css">
 	</head>
 	<body>
 		<main>
@@ -12,6 +13,20 @@
 			<div id="timers"></div>
 			<div id="pad"></div>
 		</main>
-		<script src="script.js"></script>
+		<script src="game.js"></script>
+		<div id="install-banner">
+			<div id="install-invite">
+				<p>Puoi installare questa applicazione direttamente sul tuo dispositivo, per giocare senza traffico dati</p>
+				<p>(Occupa pochissimo spazio)</p>
+				<div><button id="install-button">INSTALLA</button><button id="noinstall-button">NON ORA</button></div>
+			</div>
+			<div id="install-instructions">
+				<p>Puoi installare questa applicazione semplicemente aggiungendola alla Home del tuo dispositivo</p>
+				<p>Su dispositivi Android si può raggiungere dal menu del browser</p>
+				<p>Su dispositivi Apple si può raggiungere dal menu "Condividi"</p>
+				<button id="closeinstall-button">CHIUDI</button>
+			</div>
+		</div>
+		<script src="install.js"></script>
 	</body>
 </html>

@@ -6,10 +6,14 @@ self.addEventListener("install", async (event) => {
 		await cache.addAll([
 			"./",
 			"binary-game.html",
-			"style.css",
-			"script.js",
+			"game.css",
+			"game.js",
+			"install.css",
+			"install.js",
 			"manifest.json",
 			"icon.png",
+			"screenshot-wide.png",
+			"screenshot-narrow.png",
 		]);
 	})());
 });

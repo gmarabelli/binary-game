@@ -1,16 +1,18 @@
 /*
  *	Binary Game by GMarabelli
  */
-const START_TIME = 2000;
+const SETUP_TIME = 250;
 const TIMER_TIME = 5000;
 const MAX_BITS = 8;
 const NUM_TIMERS = 8;
+const START_TIME = SETUP_TIME * (NUM_TIMERS - 1);
 
 const body = document.body;
 const goalBanner = document.getElementById("goal");
 const timersView = document.getElementById("timers");
 const pad = document.getElementById("pad");
 
+const startEvent = new Event("start");
 const hitEvent = new Event("hit");
 const goalEvent = new Event("goal");
 const timersEvent = new Event("timers");
@@ -25,7 +27,6 @@ setupHTML();
 const cells = document.getElementById("pad").children;
 const timers = timersView.children;
 startSequence();
-goOffline();
 
 function setupHTML () {
 	for(let i = 0; i < MAX_BITS; i++){
@@ -41,39 +42,42 @@ function setupHTML () {
 	for(let i = 0; i < NUM_TIMERS; i++){
 		let circleSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 		timersView.append(circleSVG);
+		circleSVG.classList.add("animate-start");
 		circleSVG.innerHTML = '<circle cx="50%" cy="50%" r="45%" pathLength="1"></circle>';
 	}
 }
 
 function startSequence () {
-	let i;
-	for(i = 0; i <= activeTimer; i++){
-		let timerClassList = timers[i].classList;
-		timerClassList.add("animate-start");
-		setTimeout(() => {timerClassList.add("full");}, 1);
-		setTimeout(() => {
-			timerClassList.remove("animate-start");
-			timerClassList.add("animate");
-		}, START_TIME);
-	}
-
-	setTimeout(newGoal, START_TIME);
-	setTimeout(() => {
-		for(let i = 0; i < MAX_BITS; i++){
-			cells[i].addEventListener("hit", handleHit);
+	let j = NUM_TIMERS;
+	let startLoop = setInterval(() => {
+		if(j < NUM_TIMERS){
+			timers[j].classList.remove("full");
+			timers[j].classList.remove("animate-start");
 		}
-		console.log("Game start");
-	}, START_TIME);
+		j--;
+		timers[j].classList.add("full");
+		if(j == activeTimer){
+			for(let i = 0; i <= activeTimer; i++){
+				let timerClassList = timers[i].classList
+				timerClassList.add("full");
+				setTimeout(() => {
+					timerClassList.remove("animate-start");
+					timerClassList.add("animate");
+					body.dispatchEvent(startEvent);
+				}, SETUP_TIME);
+			}
+			clearInterval(startLoop);
+		}
+	}, SETUP_TIME);
 }
 
-async function goOffline () {
-	try{
-		const registration = await navigator.serviceWorker.register("offline.js");
-		console.log("Service worker registration succeeded: ", registration);
-	}catch(error){
-		console.error("Cannot load service worker: ", error);
+body.addEventListener("start", () => {
+	newGoal();
+	for(let i = 0; i < MAX_BITS; i++){
+		cells[i].addEventListener("hit", handleHit);
 	}
-}
+	console.log("Game start");
+});
 
 function startTimers () {
 	let i;

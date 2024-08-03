@@ -9,7 +9,32 @@
 			"purpose": "maskable any"
 		}
 	],
+	"theme_color": "#000";
+	"background_color": "#fff",
+
 	"start_url": "binary-game.html",
 	"display": "standalone",
-	"orientation": "landscape-primary"
+	"orientation": "landscape-primary",
+
+	"description": "Learn to translate decimal notation to binary..quicly!!",
+	"screenshots": [
+		{
+			"src": "screenshot-wide.png",
+			"sizes": "2700x1224",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Default Game Page"
+		},
+		{
+			"src": "screenshot-narrow.png",
+			"sizes": "1224x2700",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Vertical Game Page"
+		}
+	],
+	"categories": [
+		"education",
+		"games"
+	]
 }

@@ -24,6 +24,12 @@
 			"type": "image/png",
 			"form_factor": "wide",
 			"label": "Game Play"
+		},
+		{
+			"src": "screenshot.png",
+			"sizes": "2700x1224",
+			"type": "image/png",
+			"label": "Game Play"
 		}
 	],
 	"categories": [

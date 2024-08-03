@@ -30,6 +30,8 @@
 	border-radius: max(1vw, 1vh);
 	width: 20vw;
 	padding: max(1vw, 1vh);
+	font-weight: bold;
+	color: #fff;
 }
 
 #install-button {

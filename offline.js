@@ -12,8 +12,7 @@ self.addEventListener("install", async (event) => {
 			"install.js",
 			"manifest.json",
 			"icon.png",
-			"screenshot-wide.png",
-			"screenshot-narrow.png",
+			"screenshot.png",
 		]);
 	})());
 });

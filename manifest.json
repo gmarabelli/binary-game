@@ -12,7 +12,7 @@
 	"theme_color": "#000",
 	"background_color": "#fff",
 
-	"start_url": "binary-game.html",
+	"start_url": "index.html",
 	"display": "standalone",
 	"orientation": "landscape-primary",
 

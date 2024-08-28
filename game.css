@@ -1,8 +1,15 @@
+@font-face {
+	font-family: "UbuntuSansMono";
+	src: url("UbuntuSansMono.woff2");
+}
+
 body {
 	margin: 0;
 }
 
 main {
+	--box-size: 10vw;
+
 	margin: 0;
 	height: 100vh;
 	width: 100vw;
@@ -12,9 +19,9 @@ main {
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
-	font-family: sans-serif;
-
-	--box-size: 10vw;
+	font-family: "UbuntuSansMono", sans-serif;
+	font-size: calc(var(--box-size) * 4 / 5);
+	font-weight: bold;
 }
 
 #goal {
@@ -24,7 +31,7 @@ main {
 	width: calc(3 * var(--box-size));
 	background: #fff;
 	text-align: center;
-	font-size: calc(var(--box-size) * 4 / 5);
+	font: inherit;
 	color: #080;
 }
 #goal.wide {
@@ -76,11 +83,14 @@ button {
 	height: var(--box-size);
 	width: var(--box-size);
 	background: #fff;
-	font-size: calc(var(--box-size) * 4 / 5);
+	font: inherit;
 	color: #0f0;
 	transition: 0.5s ease;
 }
-button.black {
+[data-bit]::after {
+	content: attr(data-bit);
+}
+[data-bit="1"] {
 	background: #000;
 }
 
@@ -94,6 +104,7 @@ button.black {
 		border-radius: calc(0.2 * var(--box-size));
 		height: calc(2 * var(--box-size));
 		width: calc(6 * var(--box-size));
+		font: inherit;
 		font-size: calc(var(--box-size) * 8 / 5);
 	}
 	#goal.wide {

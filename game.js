@@ -19,7 +19,7 @@ const timersEvent = new Event("timers");
 
 let active;
 let limit = 2;
-let activeTimer = 0;
+let activeTimer = 3;
 let goal = 0;
 let timerLoop;
 
@@ -32,7 +32,7 @@ function setupHTML () {
 	for(let i = 0; i < MAX_BITS; i++){
 		let cell = document.createElement("button");
 		pad.append(cell);
-		cell.innerHTML = "0";
+		cell.dataset.bit = 0;
 		cell.dataset.limit = Math.pow(2, MAX_BITS - i);
 		if(i < MAX_BITS - 1){
 			cell.classList.add("hidden");
@@ -51,21 +51,23 @@ function startSequence () {
 	let j = NUM_TIMERS;
 	let startLoop = setInterval(() => {
 		if(j < NUM_TIMERS){
-			timers[j].classList.remove("full");
-			timers[j].classList.remove("animate-start");
+			let timerClassList = timers[j].classList;
+			timerClassList.remove("full");
+			timerClassList.remove("animate-start");
+			setTimeout(() => {timerClassList.add("animate");}, 20);
 		}
 		j--;
-		timers[j].classList.add("full");
+		let timerClassList = timers[j].classList;
+		timerClassList.add("full");
 		if(j == activeTimer){
 			for(let i = 0; i <= activeTimer; i++){
-				let timerClassList = timers[i].classList
-				timerClassList.add("full");
+				let timerClassList = timers[i].classList;
 				setTimeout(() => {
 					timerClassList.remove("animate-start");
 					timerClassList.add("animate");
-					body.dispatchEvent(startEvent);
 				}, SETUP_TIME);
 			}
+			body.dispatchEvent(startEvent);
 			clearInterval(startLoop);
 		}
 	}, SETUP_TIME);
@@ -83,15 +85,13 @@ function startTimers () {
 	let i;
 	for(i = 0; i <= activeTimer; i++){
 		let timerClassList = timers[i].classList;
-		timerClassList.add("animate");
 		timerClassList.add("full");
 	}
 	for(; i < NUM_TIMERS; i++){
 		let timerClassList = timers[i].classList;
-		timerClassList.remove("animate");
-		setTimeout(() => {timerClassList.remove("full");}, 1);
+		timerClassList.remove("full");
 	}
-	setTimeout(() => {timers[activeTimer].classList.remove("full");}, 10);
+	setTimeout(() => {timers[activeTimer].classList.remove("full");}, 20);
 	timerLoop = setInterval(() => {
 		activeTimer--;
 		if(activeTimer >= 0){
@@ -120,7 +120,7 @@ body.addEventListener("goal", () => {
 		limit *= 2;
 		let cell = pad.querySelector(`[data-limit='${limit}']`);
 		if(cell == null){
-			console.log("YOU WON!!");
+			console.log("Win");
 			for(let i = 0; i < MAX_BITS; i++){
 				cells[i].removeEventListener("hit", handleHit);
 			}
@@ -156,20 +156,19 @@ function handleHit (event) {
 
 function toggleCell (cell) {
 	active = cell;
-	cell.classList.toggle("black");
-	cell.innerHTML = 1 - cell.innerHTML;
+	cell.dataset.bit = 1 - cell.dataset.bit;
 }
 
 function emptyCell (cell) {
 	cell.classList.remove("black");
-	cell.innerHTML = 0;
+	cell.dataset.bit = 0;
 }
 
 function calcPad () {
 	let n = 0;
 	for(let i = 0; i < MAX_BITS; i++){
 		n *= 2;
-		n += + cells[i].innerHTML;
+		n += + cells[i].dataset.bit;
 	}
 
 	return n;

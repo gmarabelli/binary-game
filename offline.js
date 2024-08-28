@@ -5,7 +5,7 @@ self.addEventListener("install", async (event) => {
 		const cache = await caches.open(CACHE_NAME);
 		await cache.addAll([
 			"./",
-			"binary-game.html",
+			"index.html",
 			"game.css",
 			"game.js",
 			"install.css",

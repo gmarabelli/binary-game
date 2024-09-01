@@ -59,15 +59,25 @@ circle {
 	stroke-dashoffset: 1;
 	stroke-linecap: round;
 }
-.full circle {
+svg[data-timer="full"] circle {
 	stroke-dashoffset: 0;
 	fill: #080;
 }
-.animate:not(.full) circle {
-	transition: 5s linear;
+@keyframes countDown {
+	from {
+		fill: #080;
+		stroke-dashoffset: 0;
+	}
+	to {
+		fill: #ddd;
+		stroke-dashoffset: 1;
+	}
 }
-.animate-start.full circle {
-	transition: 0.25s linear;
+svg[data-timer="down"]  circle {
+	animation: 5s linear countDown;
+}
+svg[data-timer="start"]  circle {
+	animation: 0.5s linear reverse countDown;
 }
 
 #pad {

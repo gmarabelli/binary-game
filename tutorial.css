@@ -1,0 +1,18 @@
+#tutorialLens {
+	--border: max(150vw, 150vh);
+	--padding: 2vw;
+	--x: 50vw;
+	--y: -2vw;
+
+	position: fixed;
+	left: calc(var(--x) - var(--border) - var(--padding));
+	top: calc(var(--y) - var(--border) - var(--padding));
+	border: var(--border) solid #000;
+	border-radius: calc(var(--border) + var(--padding));
+	padding: var(--padding);
+	width: 0px;
+	height: 0px;
+	background: transparent;
+	opacity: 0.5;
+	transition: 0.5s;
+}

@@ -8,7 +8,7 @@ const installInstructions = document.getElementById("install-instructions");
 let deferredPrompt;
 
 registerOffline();
-body.addEventListener("start", showInstall);
+//body.addEventListener("start", showInstall);
 
 window.addEventListener("beforeinstallprompt", (event) => {
 	event.preventDefault();

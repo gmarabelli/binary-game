@@ -22,7 +22,7 @@ const cells = document.getElementById("pad").children;
 const timers = timersView.children;
 startSequence();
 
-function setupHTML () {
+function setupHTML(){
 	for(let i = 0; i < MAX_BITS; i++){
 		let cell = document.createElement("button");
 		pad.append(cell);
@@ -41,7 +41,7 @@ function setupHTML () {
 	}
 }
 
-function startSequence () {
+function startSequence(){
 	let j = -1;
 	let startLoop = setInterval(() => {
 		if(j >= 0 && j < activeTimer){

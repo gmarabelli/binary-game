@@ -22,7 +22,7 @@ document.addEventListener("startGame", () => {
 	cells[MAX_BITS - 1].addEventListener("hit", handleHit);
 });
 
-function startTimers () {
+function startTimers(){
 	let i;
 	for(i = 0; i < activeTimer; i++){
 		timers[i].dataset.timer = "full";
@@ -44,7 +44,7 @@ function startTimers () {
 	}, TIMER_TIME);
 }
 
-function newGoal () {
+function newGoal(){
 	goal = Math.floor(Math.random() * (limit - 1));
 	if(goal >= calcPad()){
 		goal++;
@@ -95,24 +95,24 @@ document.addEventListener("timers", () => {
 	}
 });
 
-function handleHit (event) {
+function handleHit(event){
 	toggleCell(event.target);
 	if(checkGoal()){
 		document.dispatchEvent(goalEvent);
 	}
 }
 
-function toggleCell (cell) {
+function toggleCell(cell){
 	activeCell = cell;
 	cell.dataset.bit = 1 - cell.dataset.bit;
 }
 
-function emptyCell (cell) {
+function emptyCell(cell){
 	cell.classList.remove("black");
 	cell.dataset.bit = 0;
 }
 
-function calcPad () {
+function calcPad(){
 	let n = 0;
 	for(let i = 0; i < MAX_BITS; i++){
 		n *= 2;
@@ -122,7 +122,7 @@ function calcPad () {
 	return n;
 }
 
-function checkGoal () {
+function checkGoal(){
 	return calcPad() == goal;
 }
 

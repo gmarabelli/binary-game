@@ -22,20 +22,20 @@ window.addEventListener("appinstalled", (event) => {
 	hideInstall();
 });
 
-function showInstall () {
+function showInstall(){
 	if(window.matchMedia("(display-mode: browser)").matches){
 		console.log("startInstall");
 		installBanner.style.display = "block";
 	}
 }
 
-function hideInstall () {
+function hideInstall(){
 	installBanner.style.display = "none";
 	console.log("endInstall");
 	document.dispatchEvent(endInstall);
 }
 
-async function registerOffline () {
+async function registerOffline(){
 	try{
 		const registration = await navigator.serviceWorker.register("offline.js");
 		console.log("Service worker registration succeeded: ", registration);

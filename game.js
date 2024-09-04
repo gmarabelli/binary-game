@@ -36,6 +36,7 @@ function startTimers () {
 		activeTimer--;
 		if(activeTimer >= 0){
 			timers[activeTimer].dataset.timer = "down";
+			timers[activeTimer + 1].dataset.timer = "";
 		}else{
 			clearInterval(timerLoop);
 			document.dispatchEvent(timersEvent);
@@ -62,7 +63,6 @@ document.addEventListener("goal", () => {
 		limit *= 2;
 		let cell = pad.querySelector(`[data-limit='${limit}']`);
 		if(cell == null){
-			console.log("Win");
 			for(let i = 0; i < MAX_BITS; i++){
 				cells[i].removeEventListener("hit", handleHit);
 			}
@@ -70,6 +70,7 @@ document.addEventListener("goal", () => {
 			goalBanner.classList.add("wide");
 			goalBanner.innerHTML = "YOU WON!!";
 			console.log("endGame");
+			document.dispatchEvent(endGame);
 			return;
 		}else{
 			cell.classList.remove("hidden");

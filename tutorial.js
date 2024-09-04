@@ -33,7 +33,6 @@ function explainElement(element, text){
 	lens.style.setProperty("--y", rect.top + "px");
 
 	let screenHeight = document.height;
-	console.log(screenHeight);
 	explanation.innerText = text;
 	if(rect.top < 200){
 		explanation.style.setProperty("--y", rect.bottom + "px");

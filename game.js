@@ -2,8 +2,6 @@
  *	Binary Game by GMarabelli
  */
 const TIMER_TIME = 5000;
-const MAX_BITS = 8;
-const NUM_TIMERS = 8;
 
 const hitEvent = new Event("hit");
 const goalEvent = new Event("goal");
@@ -14,7 +12,10 @@ let limit = 2;
 let goal = 0;
 let timerLoop;
 
-body.addEventListener("start", () => {
+const startGame = new Event("startGame");
+const endGame = new Event("endGame");
+
+body.addEventListener("startGame", () => {
 	newGoal();
 	for(let i = 0; i < MAX_BITS; i++){
 		cells[i].addEventListener("hit", handleHit);

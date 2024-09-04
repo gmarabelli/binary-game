@@ -10,7 +10,8 @@ const goalBanner = document.getElementById("goal");
 const timersView = document.getElementById("timers");
 const pad = document.getElementById("pad");
 
-const startEvent = new Event("start");
+const startIntro = new Event("startIntro");
+const endIntro = new Event("endIntro");
 
 let activeTimer = 3;
 
@@ -48,7 +49,7 @@ function startSequence () {
 		if(j == activeTimer){
 			timers[j].dataset.timer = "full";
 			clearInterval(startLoop);
-			setTimeout(() => {console.log("endIntro"); body.dispatchEvent(startEvent);}, SETUP_TIME);
+			setTimeout(() => {console.log("endIntro"); document.dispatchEvent(endIntro);}, SETUP_TIME);
 		}
 		j++;
 		if(j <= activeTimer){

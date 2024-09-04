@@ -1,18 +1,20 @@
 #install-banner {
+	--box-size: 10vw;
+
 	display: none;
 	position: fixed;
 	top: 10vh;
 	left: 10vw;
 
-	border: max(1vw, 1vh) #000 solid;
-	border-radius: max(10vw, 10vh);
-	width: calc(80vw - 2 * max(4vw, 4vh));
+	border: calc(0.1 * var(--box-size)) #000 solid;
+	border-radius: calc(0.5 * var(--box-size));
+	width: calc(80vw - 0.3 * var(--box-size));
 
 	background: #0f0;
-	padding: max(3vw, 3vh);
+	padding: calc(0.15 * var(--box-size));
 	text-align: center;
 	font-family: sans-serif;
-	font-size: 3vw;
+	font-size: 2vw;
 }
 
 #install-invite {
@@ -27,9 +29,9 @@
 #install-button,
 #noinstall-button,
 #closeinstall-button {
-	border-radius: max(1vw, 1vh);
+	border-radius: calc(0.2 * var(--box-size));
 	width: 20vw;
-	padding: max(1vw, 1vh);
+	padding: calc(0.05 * var(--box-size));
 	font-weight: bold;
 	color: #fff;
 }

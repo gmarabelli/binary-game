@@ -7,8 +7,11 @@ const installInstructions = document.getElementById("install-instructions");
 
 let deferredPrompt;
 
+const startInstall = new Event("startInstall");
+const endInstall = new Event("endInstall");
+
 registerOffline();
-//body.addEventListener("start", showInstall);
+document.addEventListener("startInstall", showInstall);
 
 window.addEventListener("beforeinstallprompt", (event) => {
 	event.preventDefault();
@@ -21,12 +24,15 @@ window.addEventListener("appinstalled", (event) => {
 
 function showInstall () {
 	if(window.matchMedia("(display-mode: browser)").matches){
+		console.log("startInstall");
 		installBanner.style.display = "block";
 	}
 }
 
 function hideInstall () {
 	installBanner.style.display = "none";
+	console.log("endInstall");
+	document.dispatchEvent(endInstall);
 }
 
 async function registerOffline () {

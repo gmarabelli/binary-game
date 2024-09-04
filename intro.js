@@ -6,6 +6,7 @@ const MAX_BITS = 8;
 const NUM_TIMERS = 8;
 
 const body = document.body;
+const main = document.getElementsByTagName("main")[0];
 const goalBanner = document.getElementById("goal");
 const timersView = document.getElementById("timers");
 const pad = document.getElementById("pad");

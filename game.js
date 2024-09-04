@@ -2,6 +2,7 @@
  *	Binary Game by GMarabelli
  */
 const TIMER_TIME = 5000;
+const GOAL_TIME = 500;
 
 const hitEvent = new Event("hit");
 const goalEvent = new Event("goal");
@@ -15,33 +16,29 @@ let timerLoop;
 const startGame = new Event("startGame");
 const endGame = new Event("endGame");
 
-body.addEventListener("startGame", () => {
+document.addEventListener("startGame", () => {
+	console.log("startGame");
 	newGoal();
-	for(let i = 0; i < MAX_BITS; i++){
-		cells[i].addEventListener("hit", handleHit);
-	}
-	console.log("Game start");
+	cells[MAX_BITS - 1].addEventListener("hit", handleHit);
 });
 
 function startTimers () {
 	let i;
 	for(i = 0; i < activeTimer; i++){
-		let timerClassList = timers[i].classList;
-		timerClassList.add("full");
+		timers[i].dataset.timer = "full";
 	}
-	timers[activeTimer].classList.add("down");
+	timers[i].dataset.timer = "down";
+	i++;
 	for(; i < NUM_TIMERS; i++){
-		let timerClassList = timers[i].classList;
-		timerClassList.remove("full");
+		timers[i].dataset.timer = "";
 	}
-	setTimeout(() => {}, 20);
 	timerLoop = setInterval(() => {
 		activeTimer--;
 		if(activeTimer >= 0){
-			timers[activeTimer].classList.remove("full");
+			timers[activeTimer].dataset.timer = "down";
 		}else{
 			clearInterval(timerLoop);
-			body.dispatchEvent(timersEvent);
+			document.dispatchEvent(timersEvent);
 		}
 	}, TIMER_TIME);
 }
@@ -55,9 +52,11 @@ function newGoal () {
 	startTimers();
 }
 
-body.addEventListener("goal", () => {
+document.addEventListener("goal", () => {
 	console.log("GOAL: ", goal);
 	clearInterval(timerLoop);
+	main.dataset.goal = "ok";
+	setTimeout(() => {main.dataset.goal = "";}, GOAL_TIME);
 	activeTimer++;
 	if(activeTimer >= NUM_TIMERS){
 		limit *= 2;
@@ -67,23 +66,28 @@ body.addEventListener("goal", () => {
 			for(let i = 0; i < MAX_BITS; i++){
 				cells[i].removeEventListener("hit", handleHit);
 			}
-			timers[NUM_TIMERS - 1].classList.add("full");
+			timers[NUM_TIMERS - 1].dataset.timer = "full";
 			goalBanner.classList.add("wide");
 			goalBanner.innerHTML = "YOU WON!!";
+			console.log("endGame");
 			return;
 		}else{
 			cell.classList.remove("hidden");
-			activeTimer = 0;
+			cell.addEventListener("hit", handleHit);
+			activeTimer = 1;
 		}
 	}
 	newGoal();
 });
 
-body.addEventListener("timers", () => {
+document.addEventListener("timers", () => {
 	if(limit > 2){
+		main.dataset.goal = "no";
+		setTimeout(() => {main.dataset.goal = "";}, GOAL_TIME);
 		let cell = pad.querySelector(`[data-limit='${limit}']`);
 		emptyCell(cell);
 		cell.classList.add("hidden");
+		cell.removeEventListener("hit", handleHit);
 		limit /= 2;
 		activeTimer = NUM_TIMERS - 1;
 		newGoal();
@@ -93,12 +97,12 @@ body.addEventListener("timers", () => {
 function handleHit (event) {
 	toggleCell(event.target);
 	if(checkGoal()){
-		body.dispatchEvent(goalEvent);
+		document.dispatchEvent(goalEvent);
 	}
 }
 
 function toggleCell (cell) {
-	active = cell;
+	activeCell = cell;
 	cell.dataset.bit = 1 - cell.dataset.bit;
 }
 
@@ -124,10 +128,10 @@ function checkGoal () {
 body.addEventListener("touchmove", (event) => {
 	const cell = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
 	if(cell.tagName != "BUTTON" || cell.classList.contains("result")){
-		active = cell;
+		activeCell = cell;
 		return;
 	}
-	if(cell == active){
+	if(cell == activeCell){
 		return;
 	}
 	cell.dispatchEvent(hitEvent);
@@ -135,10 +139,10 @@ body.addEventListener("touchmove", (event) => {
 body.addEventListener("mouseover", (event) => {
 	const cell = document.elementFromPoint(event.clientX, event.clientY);
 	if(cell.tagName != "BUTTON" || cell.classList.contains("result")){
-		active = cell;
+		activeCell = cell;
 		return;
 	}
-	if(cell == active){
+	if(cell == activeCell){
 		return;
 	}
 	if(event.buttons == 0){
@@ -150,7 +154,7 @@ body.addEventListener("pointerdown", (event) => {
 	event.preventDefault();
 	const cell = document.elementFromPoint(event.clientX, event.clientY);
 	if(cell.tagName != "BUTTON" || cell.classList.contains("result")){
-		active = cell;
+		activeCell = cell;
 		return;
 	}
 	cell.dispatchEvent(hitEvent);

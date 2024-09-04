@@ -22,7 +22,7 @@ function runTutorial(){
 	setTimeout(() => {explainElement(timersView, "Passando il tempo si perdono punti, che si possono però guadagnare componendo correttamente i numeri");}, 2000);
 	setTimeout(() => {explainElement(pad, "Qui appariranno tutti i bit per comporre i numeri in binario: basta premere o passare sopra ad uno di essi per modificarne il valore. Premi il bit per comporre il numero 1");}, 4000);
 	setTimeout(() => {container.style.opacity = 0;}, 6000);
-	setTimeout(() => {container.remove(); document.dispatchEvent(endTutorial); console.log("endTutorial");}, 6500);
+	setTimeout(() => {container.remove(); console.log("endTutorial"); document.dispatchEvent(endTutorial);}, 6500);
 }
 
 function explainElement(element, text){

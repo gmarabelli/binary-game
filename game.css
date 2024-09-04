@@ -37,6 +37,28 @@ main {
 #goal.wide {
 	width: calc(6 * var(--box-size));
 }
+main[data-goal="ok"] {
+	animation: 0.5s ease ok_goal;
+}
+@keyframes ok_goal {
+	from, to {
+		background: #fff;
+	}
+	50% {
+		background: #8f8;
+	}
+}
+main[data-goal="no"] {
+	animation: 0.5s ease no_goal;
+}
+@keyframes no_goal {
+	from, to {
+		background: #fff;
+	}
+	50% {
+		background: #f88;
+	}
+}
 
 #timers {
 	width: calc(8.25 * var(--box-size));

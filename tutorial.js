@@ -21,22 +21,26 @@ const tutorial = [
 ];
 
 function runTutorial(){
-	console.log("startTutorial");
-	container = document.createElement("div");
-	container.id = "tutorial";
-	body.append(container);
+	if(window.matchMedia("(display-mode: browser)").matches){
+		console.log("startTutorial");
+		container = document.createElement("div");
+		container.id = "tutorial";
+		body.append(container);
 
-	lens = document.createElement("div");
-	lens.id = "tutorialLens";
-	container.append(lens);
+		lens = document.createElement("div");
+		lens.id = "tutorialLens";
+		container.append(lens);
 
-	explanation = document.createElement("div");
-	explanation.id = "tutorialExplanation";
-	container.append(explanation);
+		explanation = document.createElement("div");
+		explanation.id = "tutorialExplanation";
+		container.append(explanation);
 
-	phase = -1;
-	nextTutorial();
-	body.addEventListener("pointerdown", nextTutorial);
+		phase = -1;
+		nextTutorial();
+		body.addEventListener("pointerdown", nextTutorial);
+	}else{
+		document.dispatchEvent(endTutorial);
+	}
 }
 
 function explainElement(element, text){

@@ -26,6 +26,8 @@ function showInstall(){
 	if(window.matchMedia("(display-mode: browser)").matches){
 		console.log("startInstall");
 		installBanner.style.display = "block";
+	}else{
+		document.dispatchEvent(endInstall);
 	}
 }
 

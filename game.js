@@ -86,7 +86,7 @@ document.addEventListener("timers", () => {
 		main.dataset.goal = "no";
 		setTimeout(() => {main.dataset.goal = "";}, GOAL_TIME);
 		let cell = pad.querySelector(`[data-limit='${limit}']`);
-		emptyCell(cell);
+		cell.dataset.bit = 0;
 		cell.classList.add("hidden");
 		cell.removeEventListener("hit", handleHit);
 		limit /= 2;
@@ -105,11 +105,6 @@ function handleHit(event){
 function toggleCell(cell){
 	activeCell = cell;
 	cell.dataset.bit = 1 - cell.dataset.bit;
-}
-
-function emptyCell(cell){
-	cell.classList.remove("black");
-	cell.dataset.bit = 0;
 }
 
 function calcPad(){

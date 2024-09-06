@@ -21,15 +21,20 @@
 	--border: 0.5vw;
 	--padding: 2vw;
 	--x: 50vw;
-	--y: -2vw;
+	--y: -10vw;
+	--distance: 5vw;
+	--line: 0;
+	--height: 10vw;
 
 	position: fixed;
 	left: calc(var(--x) - var(--border) - var(--padding));
-	top: calc(var(--y) - var(--border) - var(--padding));
+	top: calc(var(--y) - var(--height) / 2 + (var(--height) / 2 + var(--distance) + var(--padding)) * var(--line) - var(--border) - var(--padding));
 	border: var(--border) solid #000;
 	border-radius: calc(var(--border) + var(--padding));
 	padding: var(--padding);
 	width: 40vw;
-	height: 20vw;
+	height: var(--height);
+	background: #fff;
+	font-size: 1.8vw;
 	transition: 0.5s;
 }

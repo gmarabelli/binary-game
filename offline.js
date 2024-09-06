@@ -6,12 +6,18 @@ self.addEventListener("install", async (event) => {
 		await cache.addAll([
 			"./",
 			"index.html",
-			"game.css",
-			"game.js",
+			"events.js",
+			"intro.js",
+			"tutorial.css",
+			"tutorial.js",
 			"install.css",
 			"install.js",
+			"game.css",
+			"game.js",
 			"manifest.json",
 			"icon.png",
+			"screenshot.png",
+			"UbuntuSansMono.woff2",
 		]);
 	})());
 });

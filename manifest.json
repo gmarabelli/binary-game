@@ -19,16 +19,17 @@
 	"description": "Learn to translate decimal notation to binary..quickly!!",
 	"screenshots": [
 		{
-			"src": "screenshot.png",
-			"sizes": "2700x1224",
+			"src": "screenshot-landscape.png",
+			"sizes": "1919x994",
 			"type": "image/png",
 			"form_factor": "wide",
 			"label": "Game Play"
 		},
 		{
-			"src": "screenshot.png",
-			"sizes": "2700x1224",
+			"src": "screenshot-portrait.png",
+			"sizes": "825x994",
 			"type": "image/png",
+			"form_factor": "narrow",
 			"label": "Game Play"
 		}
 	],

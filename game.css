@@ -3,6 +3,10 @@
 	src: url("UbuntuSansMono.woff2");
 }
 
+html {
+	-webkit-text-size-adjust:none;
+}
+
 body {
 	margin: 0;
 	font-family: "UbuntuSansMono", sans-serif;
@@ -115,6 +119,7 @@ button {
 	height: var(--box-size);
 	width: var(--box-size);
 	background: #fff;
+	text-align: center;
 	font: inherit;
 	color: #0f0;
 	transition: 0.5s ease;

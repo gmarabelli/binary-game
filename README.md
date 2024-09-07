@@ -2,7 +2,7 @@
 
 ## Learn to translate decimal notation to binary..quickly!!
 
-### [Vai al gioco](index.html)
+### [Vai al gioco](https://gmarabelli.github.io/binary-game)
 
 ![Game Play Example](screenshot-landscape.png "Game Play Example")
 

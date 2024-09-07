@@ -16,7 +16,8 @@ self.addEventListener("install", async (event) => {
 			"game.js",
 			"manifest.json",
 			"icon.png",
-			"screenshot.png",
+			"screenshot-landscape.png",
+			"screenshot-portrait.png",
 			"UbuntuSansMono.woff2",
 		]);
 	})());

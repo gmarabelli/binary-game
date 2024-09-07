@@ -2,7 +2,7 @@
 
 ## Learn to translate decimal notation to binary..quickly!!
 
-### [Vai al gioco](./)
+### [Vai al gioco](index.html)
 
 ![Game Play Example](screenshot-landscape.png "Game Play Example")
 

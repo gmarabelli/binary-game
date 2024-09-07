@@ -32,6 +32,7 @@ function startTimers(){
 	for(; i < NUM_TIMERS; i++){
 		timers[i].dataset.timer = "";
 	}
+	clearInterval(timerLoop);
 	timerLoop = setInterval(() => {
 		activeTimer--;
 		if(activeTimer >= 0){

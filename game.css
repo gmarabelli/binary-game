@@ -116,6 +116,7 @@ svg[data-timer="start"]  circle {
 button {
 	border: calc(0.05 * var(--box-size)) #000 solid;
 	border-radius: calc(0.1 * var(--box-size));
+	padding: 0;
 	height: var(--box-size);
 	width: var(--box-size);
 	background: #fff;

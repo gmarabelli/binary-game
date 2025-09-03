@@ -4,7 +4,7 @@
 
 ### [Vai al gioco](https://gmarabelli.github.io/binary-game)
 
-![Game Play Example](screenshot-landscape.png "Game Play Example")
+![Game Play Example](docs/screenshot-landscape.png "Game Play Example")
 
 Questo semplice gioco metterà alla prova le tue abilità di conversione dal sistema decimale al sistema binario.
 
